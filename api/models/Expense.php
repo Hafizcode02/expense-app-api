@@ -25,7 +25,19 @@ class Expense
         $stmt->bindParam(":id", $userId);
         $stmt->execute();
 
-        return $stmt;
+        return $stmt->fet;
+    }
+
+    public function getExpensePrice($userId)
+    {
+        $query = "SELECT SUM(price) AS totalExpense FROM " . $this->table_name . " WHERE id_user = :id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(":id", $userId);
+        $stmt->execute();
+
+        $data = $stmt->fetch();
+
+        return $data['totalExpense'];
     }
 
     public function CreateExpense()

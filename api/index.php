@@ -39,7 +39,17 @@ if ($_GET['route'] === 'expenses' && $_GET['id']) {
         return;
     }
 } else if ($_GET['route'] === 'expenses/count' && $_GET['id']) {
-    // Fill the code.
+    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+        $stmt = $expenseController->getExpensePrice($_GET['id']);
+        if ($stmt) {
+            echo json_encode(array('totalExpense' => $stmt));
+            return;
+        }
+        echo json_encode(array('totalExpense' => "0"));
+        return;
+    }
+    echo json_encode(array('message' => 'Request Method not Allowed'));
+    return;
 }
 // route expense (Create, Update, Delete)
 else if ($_GET['route'] === 'expense') {

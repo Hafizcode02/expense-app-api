@@ -12,6 +12,11 @@ class ExpenseController {
         return $stmt;
     }
 
+    public function getExpensePrice($userId) {
+        $stmt = $this->expense->getExpensePrice($userId);
+        return $stmt;
+    }
+
     public function createExpense() {
         $data = json_decode(file_get_contents("php://input"));
 
