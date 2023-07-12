@@ -25,7 +25,7 @@ class Expense
         $stmt->bindParam(":id", $userId);
         $stmt->execute();
 
-        return $stmt->fet;
+        return $stmt;
     }
 
     public function getExpensePrice($userId)
