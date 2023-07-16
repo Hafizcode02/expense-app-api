@@ -75,7 +75,7 @@ class User
         $stmt = $this->conn->prepare($query);
 
         if ($this->password != "") {
-            $stmt->bindParam(":password", $this->password);
+            $stmt->bindParam(":password", password_hash($this->password, PASSWORD_BCRYPT));
         }
 
         $stmt->bindParam(":fullname", $this->fullname);
