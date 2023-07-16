@@ -32,7 +32,7 @@ if ($_GET['route'] === 'expenses' && $_GET['id']) {
 
             array_push($expensesList, $expenseItem);
         }
-        echo json_encode($expensesList);
+        echo json_encode(array('data' => $expensesList));
         return;
     } else {
         echo json_encode(array('message' => 'Request Method not Allowed'));
